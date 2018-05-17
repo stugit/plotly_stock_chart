@@ -1,7 +1,7 @@
 import plotly as py
 import plotly.graph_objs as go
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas_datareader.data as web
 
 import dash
@@ -9,8 +9,8 @@ import dash_html_components as html
 import dash_core_components as dcc
 
 data_source = "morningstar"
-start_datetime = datetime(2015, 1, 1)
-end_datetime = datetime(2016, 7, 31)
+end_datetime = datetime.now()
+start_datetime = end_datetime - timedelta(days=365)
 
 ticker="aapl"
 
