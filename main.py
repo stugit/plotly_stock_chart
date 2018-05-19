@@ -21,6 +21,9 @@ def read_data(ticker):
     return df
 
 def update(ticker):
+    if not isinstance(ticker, str):
+        return None
+
     print("Updating... {0}".format(ticker))
     df = read_data(ticker)
     cs = go.Candlestick(name=ticker,
@@ -52,7 +55,8 @@ app.layout = html.Div([
     [dash.dependencies.Input('button', 'n_clicks')],
     [dash.dependencies.State('input-box', 'value')])
 def update_output(n_clicks, value):
-    return update(value)
+    new_fig = update(value) or fig
+    return new_fig
 
 
 if __name__ == '__main__':
